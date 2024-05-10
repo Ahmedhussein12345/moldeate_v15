@@ -104,7 +104,7 @@ debit note barcode mobile scanner
     "assets": {
         "web.assets_backend": [
             "sh_all_in_one_mbs/static/src/scss/custom.scss",
-            # "sh_all_in_one_mbs/static/src/js/ZXing.js",
+            "sh_all_in_one_mbs/static/src/js/ZXing.js",
             "sh_all_in_one_mbs/static/src/js/global_doc_search/global_doc_search.js",
             'sh_all_in_one_mbs/static/src/js/messaging_notification_handler.js',
             'sh_all_in_one_mbs/static/src/js/bus_notification.js',

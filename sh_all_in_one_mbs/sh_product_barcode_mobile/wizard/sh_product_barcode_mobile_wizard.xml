@@ -22,7 +22,7 @@
                         </group>
                     </div>
 
-<!--                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>-->
+                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>
                     <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/sh_product_barcode_mobile.js"></script>
 
                     <section class="oe_edit_only">

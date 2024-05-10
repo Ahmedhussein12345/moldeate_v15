@@ -15,7 +15,7 @@
                 </xpath>
 
                 <xpath expr="//notebook" position="before">
-<!--                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>-->
+                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>
                     <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/sh_stock_barcode_mobile.js"></script>
 
                     <section class="oe_edit_only" attrs="{'invisible': [('state', 'not in', ['assigned','draft','confirmed'] )]}">
@@ -60,7 +60,7 @@
                 </xpath>
 
                 <field name="move_line_ids" position="before">
-<!--                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>-->
+                    <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/ZXing.js"></script>
                     <script type="text/javascript" src="/sh_all_in_one_mbs/static/src/js/sh_stock_move_barcode_mobile.js"></script>
 
                     <section style="">
