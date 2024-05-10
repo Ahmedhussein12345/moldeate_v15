@@ -1,0 +1,196 @@
+div.o_menu_systray > div.ks_sh_global_search {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: calc(428px + 2.5rem) !important;
+    margin: 0 auto;
+    .sh_search_container {
+        width: 100%;
+        .sh_search_input {
+            margin-top: 0;
+            width: 100%;
+
+        }
+    }
+    .o_mail_navbar_item {
+        order: 2;
+        li.o_no_activity > div {
+            color: var(--color) !important;
+        }
+    }
+}
+
+.ks_top_bar{
+    position: relative;
+    z-index: 999;
+}
+.sh_search_results {
+    background-color: var(--background);
+   .dropdown-item {
+        color: var(--color);
+}
+}
+.sh_search_input .clear_Search {
+    color: #adb3b9;
+    border-bottom: 1px solid #adb3b9;
+    border: none;
+    margin-right: 3px;
+    &:focus {
+        outline: none;
+    }
+}
+.sh_search_input .input-group-text {
+    border-bottom: 1px #adb3b9;
+    color: #adb3b9;
+}
+.sh_search_input .usermenu_search_input {
+    color: #adb3b9;
+    border-bottom: 1px solid #adb3b9;
+}
+.sh_search_input .usermenu_search_input::placeholder {
+    color: #adb3b9;
+}
+.ks_sh_search_results.has-results {
+    min-height: calc(100% - 46px);
+    left: 0;
+}
+.sh_search_input .input-group{
+    border-color: var(--ks-border);
+    border: 1px solid #adb3b9;
+    border-radius: 20px;
+    background-color: #fff;
+
+}
+
+.sh_search_input .input-group .usermenu_search_input {
+    border-radius: 10px !important;
+    border:none;
+    }
+
+.sh_search_results {
+    max-width: 400px;
+    max-height: 500px;
+    box-shadow: 0px 4px 10px #00000040;
+    border-radius: var(--theme-style-radius-5);
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    .dropdown-item:nth-child(1) {
+        margin-top: 10px;
+   }
+}
+
+span.ks_field_key {
+    font-size: 10px;
+}
+
+.o_action_manager {
+    .sh_search_results.ks_sh_search_results {
+        width: 100% !important;
+        max-width: inherit !important;
+        box-shadow: none;
+    }
+}
+
+.ks_search_table_head {
+    background-color: #ddd;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ks_search_table_icon {
+    width: 25px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+.ks_sh_search_results .app_settings_block .o_list_view{
+    margin-bottom: 25px
+}
+
+.ks_sh_search_results .search_result_table {
+    padding: 0px 10px;
+}
+
+.ks_search_page_table_head {
+    padding-left: 16px !important;
+}
+
+.o_base_settings .o_setting_container .settings_tab .tab.ks_search_result_tab .icon {
+  height: 23px;
+
+}
+.o_base_settings .o_setting_container .settings_tab .tab.ks_search_result_tab {
+        align-items: center;
+}
+
+.ks_search_page_tab, .ks_search_page_tab p {
+    overflow: hidden;
+}
+
+.ks_search_result_tab {
+    padding:0px !important;
+    margin-bottom: 10px;
+     p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        line-height: normal;
+        margin-bottom: 0px;
+    }
+}
+
+.ks_results_count {
+    border: 1px solid !important;
+    border-radius: 50%;
+    padding: 1px 5px;
+    line-height: inherit;
+    margin-left: 10px;
+
+}
+
+.ks_search_page_table_name {
+        padding-left: 5px;
+}
+
+.o_base_settings .o_setting_container .settings_tab{
+    flex-basis: 12%;
+    .tab.selected{
+        color: var(--primary);
+    }
+}
+
+.ks_search_no_result {
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+.ks_search_page_table_details {
+    display: flex;
+    flex-direction: column;
+}
+.ks_search_page_table_name.ks_result_rec_count {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.search_company_detail.ks_search_table_head {
+    color: #454546;
+}
+
+.o_mail_navbar_item a {
+    background: #fff !important;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.ks_sh_search_results .o_base_settings .o_setting_container .settings .settingSearchHeader {
+    background-color: #e9ecef;
+}

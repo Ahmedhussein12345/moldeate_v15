@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tracking_number,tracking.number,ups_detail_tracking.model_tracking_number,,1,1,1,1
+access_tracking_details_ups,tracking.details.ups,ups_detail_tracking.model_tracking_details_ups,,1,1,1,1

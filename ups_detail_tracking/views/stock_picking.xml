@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form_inherited_tracking_details" model="ir.ui.view">
+        <field name="name">view.picking.form.inherited.tracking.details</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='note']" position="after">
+                <page string="Tracking Details" name="tracking_details" attrs="{'invisible': [('delivery_type','!=','ups_ts')]}">
+                    <group>
+                        <group>
+                            <field name="tracking_number_id" string="Tracking Number" domain="[('picking_id', '=', id)]" widget='selection'/>
+                            <field name="ups_delivery_date" attrs="{'invisible': [('ups_delivery_date','=',False)]}"/>
+                            <field name="ups_delivery_time" widget="float_time" attrs="{'invisible': [('ups_delivery_time','=',0.0)]}"/>
+                        </group>
+                        <group>
+                            <button name="refresh_tracking_details" string="Refresh Tracking Details" attrs="{'invisible': [('tracking_number_id','=',False)]}" type="object"
+                                    class="oe_right btn btn-primary" icon="fa-refresh"/>
+                        </group>
+                    </group>
+                    <field name="tracking_details_ids" attrs="{'invisible': [('tracking_number_id','=',False)]}" readonly="1" options="{'no_open': True, 'no_create': True}">
+                        <tree default_order="activity_date desc, activity_time desc">
+                            <field name="activity_date"/>
+                            <field name="activity_time" widget="float_time"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                            <field name="status_type"/>
+                            <field name="status_description" optional="hide"/>
+                            <field name="postal_code" optional="hide"/>
+                            <field name="status_code" optional="hide"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

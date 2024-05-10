@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_delivery_document_qty_update" inherit_id="stock.report_delivery_document">
+
+        <xpath expr="//div[@name='signature']" position="before">
+            <div class="row justify-content-end" >
+                <div class="col-auto">
+                    <strong>Total Quantity:</strong>
+                     <span t-field="o.qty_count"/>
+                </div>
+            </div>
+        </xpath>
+</template >
+
+</odoo>

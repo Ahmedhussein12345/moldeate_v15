@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="ks_lm_navbar" xml:space="preserve">
+    <t t-inherit-mode="extension" t-inherit="web.NavBar" owl="1">
+        <xpath expr="//nav" position="before">
+            <div class="ks_lm_systray o_menu_systray" role="menu">
+                <t t-foreach="systrayItems" t-as="item" t-key="item.key">
+                    <NotUpdatable>
+                        <ErrorHandler onError="error => handleItemError(error, item)">
+                            <t t-component="item.Component" t-props="item.props" />
+                        </ErrorHandler>
+                    </NotUpdatable>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

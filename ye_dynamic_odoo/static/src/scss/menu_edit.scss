@@ -1,0 +1,237 @@
+a[data-menu-xmlid='menu_app.edit'] {
+  display: none;
+}
+.editMode {
+  a[data-menu-xmlid='menu_app.edit'], a[data-menu-xmlid='studio.menuApps'] {
+    background: #454849;
+    font-size: 12px;
+    display: block;
+    color: #0093b2 !important;
+    &::before {
+      content: "\f040";
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
+
+.wCMdiALog {
+  position: fixed;
+  z-index: 1010;
+  background: rgba(0, 0, 0, 0.7);
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  color: #d6d6d6;
+  .wCMdLCon {
+    width: 350px;
+    margin: 50px auto;
+    background: #2b2b2b;
+    .cmHd {
+      padding: 15px 10px;
+      background: #3c3f41;
+      border-bottom: 1px solid #2c2f30;
+      h4 {
+        font-weight: 400;
+        display: inline-block;
+        margin: 0px;
+        font-size: 14px;
+      }
+      span {
+        float: right;
+        font-size: 19px;
+      }
+    }
+    .cmCt {
+      position: relative;
+      padding: 10px 20px 20px 20px;
+      .sModel {
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        font-size: 11px;
+        text-decoration: underline;
+        color: #8b68a0;
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      ._checkbox {
+        margin-top: 10px  ;
+      }
+      input {
+        padding: 0px 10px;
+        background: #45494a;
+        border: 1px solid #737678;
+        width: 100%;
+        border-radius: 2px;
+        min-height: 30px;
+        outline: none;
+        color: #c8c8c8;
+      }
+    }
+    .cmFt {
+      padding: 10px;
+      background: #3c3f41;
+      border-top: 1px solid #2c2f30;
+      text-align: right;
+      .btnSave {
+        background: #675073;
+        padding: 5px 15px;
+        border-color: #5c406d;
+        margin-right: 5px;
+      }
+      .btnCancel {
+        background: #585858;
+        border-color: #4a4a4a;
+        color: white;
+      }
+    }
+  }
+}
+._hide {
+  display: none !important;
+}
+._show {
+  display: block !important;
+}
+._menuEdit {
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.8;
+  i {
+    margin-right: 5px;
+  }
+}
+._menuEdit:hover {
+  opacity: 1;
+}
+._bgEdit {
+  position: fixed;
+  z-index: 1002;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0px;
+  border-top: 5px solid #6f7d82;
+}
+.wrapMenuEdit {
+  overflow: hidden;
+  min-width: 500px;
+  background: white;
+  border: 1px solid #2c373c;
+  color: #bbbbbb;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin: auto;
+  border-top-width: 0px;
+  position: relative;
+  ._bot {
+    background: #3c3f41;
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #2c383b;
+    ._btnConfirm {
+      color: white;
+      background: #6f7d82;
+      border: 1px solid #3c3f41;
+      font-weight: bold;
+    }
+  }
+  ._head {
+    padding: 15px 10px;
+    border-bottom: 1px solid #2c2f30;
+    display: flex;
+    background: #3c3f41;
+    div:first-child {
+      flex: 1;
+      a {
+        font-size: 16px;
+        color: #d6d6d6  ;
+        font-weight: bold;
+      }
+    }
+    div:last-child {
+      text-align: left;
+    }
+    i {
+      font-size: 19px;
+      color: #878787;
+      cursor: pointer;
+    }
+    i:hover {
+      color: #d6d6d6;
+    }
+  }
+  ._con {
+    background-color: #2b2b2b;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 20px;
+    >ul {
+      padding: 0px;
+    }
+  }
+  ul {
+    list-style: none;
+    padding-left: 30px;
+  }
+  ._wInfo:hover {
+    opacity: 1;
+  }
+  ._wInfo {
+    display: flex;
+    background: #fafbfc;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background: #3b3f41;
+    border: 1px solid #707d84;
+    ._wEdit {
+      margin-top: 4px;
+      width: 23px;
+      background-image: url(/ye_dynamic_odoo/static/src/img/edit.png);
+    }
+    ._wName {
+      flex: 1;
+      padding: 5px 15px;
+      background: #50565a;
+      //border: 1px solid #707d84;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      color: #bbbbbb;
+      input {
+        display: none;
+      }
+      input:focus {
+        border: 1px solid #a5a3d3;
+      }
+    }
+    ._wAdd {
+      padding: 7px 7px 0px 7px;
+      background: #6f7d83;
+      color: white;
+      i {
+        //font-size: 16px;
+      }
+    }
+    ._wIcon {
+      margin: 3px 5px 0px 5px;
+      display: block;
+      width: 22px;
+      height: 25px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    ._wRemove {
+      background-image: url(/ye_dynamic_odoo/static/src/img/remove.png);
+    }
+  }
+}

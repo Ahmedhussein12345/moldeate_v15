@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="user_view_tree" model="ir.ui.view">
+            <field name="name">ks.users.tree</field>
+            <field name="model">ks.users</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" delete="0 ">
+                    <field name="ks_active" invisible="1"/>
+                    <field name="ks_user_id" invisible="1"/>
+                    <field name="ks_name"/>
+                    <field name="ks_login"/>
+                    <field name="ks_current_user"/>
+                    <field name="ks_user_type" invisible="1"/>
+                    <field name="ks_portal" invisible="1"/>
+                    <button name="call_unique"
+                            type="object" string="LOGIN" class="btn btn-primary" attrs="{'invisible':['|',('ks_current_user','=', True ),('ks_portal', '=', True)]}" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="ks_user_login.action_user">
+            <field name="name">List of Users</field>
+            <field name="res_model">ks.users</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <menuitem name="Allow Login as Any User" id="ks_user_login.menu" action="ks_user_login.action_user"
+        web_icon="ks_user_login,static/description/icon.png"/>
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="ye_dynamic_odoo.StudioNavBar" owl="1">
+        <header>
+            <nav
+            class="o_main_navbar"
+            t-on-dropdown-item-selected="onNavBarDropdownItemSelection"
+            data-command-category="navbar">
+            <!-- Apps Menu -->
+                <t t-call="web.NavBar.AppsMenu">
+                    <t t-set="apps" t-value="getApps()" />
+                </t>
+
+                <!-- App Brand -->
+                <MenuItem t-if="currentApp" href="getMenuItemHref(currentApp)" payload="currentApp"
+                          t-esc="currentApp.name" class="o_menu_brand" t-ref="menuBrand" />
+
+                <!-- Current App Sections -->
+                <t t-if="currentAppSections.length" t-call="web.NavBar.SectionsMenu">
+                    <t t-set="sections" t-value="currentAppSections" />
+                </t>
+            </nav>
+        </header>
+    </t>
+    <t t-name="ye_dynamic_odoo.StudioMenuItem" owl="1">
+        <t t-tag="props.href ? 'a' : 'span'" t-att-href="props.href == '#studio' ? false : props.href"
+           class="dropdown-item" t-on-click="onClick" t-att-title="props.title" t-att-data-hotkey="props.hotkey" >
+            <t t-slot="default" />
+        </t>
+    </t>
+</templates>

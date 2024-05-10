@@ -1,0 +1,48 @@
+/*
+	MAIN STYLE
+*/
+
+.oe_website_login_container {
+    padding: 70px 0px 70px 0px;
+    border-radius: 20px;
+    background-color: rgba(240, 241, 245, 0.23);
+    color: black;
+    backdrop-filter: blur(10px);
+box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.16);
+-webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.16);
+-moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.16);
+
+}
+.logintitle span {
+    color: #1568a3;
+}
+.logintitle span{
+    color: #1568a3;
+}
+
+.loginbtn{
+    color: #FFFFFF;
+	border-color: #1568a3;
+	background-color: #1568a3;
+}
+
+.link-binary a{
+    color: black;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+
+div#footer {
+    display: none;
+}
+.o_footer_copyright.o_colored_level.o_cc {
+    display: none;
+}
+li.o_wsale_my_cart.align-self-md-start.nav-item.mx-lg-3 {
+    display: none;
+}
+
+.oe_login_form, .oe_signup_form, .oe_reset_password_form{
+    margin-top: 10px;
+}

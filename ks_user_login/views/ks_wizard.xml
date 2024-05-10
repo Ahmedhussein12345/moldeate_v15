@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="popup_view_tree" model="ir.ui.view">
+            <field name="name">ks.wizard.popup</field>
+            <field name="model">ks.wizard</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ks_password" string="Password" password="True"/>
+                                <field name="ks_users" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Confirm" name="callable_func" type="object"/>
+                        <button string="Cancel" name="cancel_func" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ks_user_login.popup">
+            <field name="name">Password</field>
+            <field name="res_model">ks.wizard</field>
+            <field name="view_mode">form</field>
+        </record>
+    </data>
+</odoo>

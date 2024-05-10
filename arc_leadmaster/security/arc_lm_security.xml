@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  TODO: Remove  <data noupdate="1"> -->
+    <data>
+
+        <record model="res.groups" id="base.group_system">
+            <field name="implied_ids" eval="[(4, ref('ks_curved_backend_theme.ks_curved_theme_settings'))]"/>
+        </record>
+
+    </data>
+</odoo>

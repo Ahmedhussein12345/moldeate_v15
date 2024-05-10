@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data noupdate="1">-->
+    <data>
+        <!-- Inherit Default Values of Color Theme -->
+        <record model="ks.color.theme" id="ks_curved_backend_theme.ks_color_theme_temp_1">
+            <field name="ks_body_background">#f0f0f0</field>
+            <field name="ks_menu">#017fa4</field>
+            <field name="ks_menu_hover">#ffd458</field>
+            <field name="ks_button">#ffd458</field>
+            <field name="ks_border">#0166a4</field>
+            <field name="ks_heading">#0166a4</field>
+            <field name="ks_link">#e1d458</field>
+            <field name="ks_primary_color">#0166a4</field>
+            <field name="ks_tooltip">#dcdcdc</field>
+            <field name="ks_default">True</field>
+            <field name="ks_template">True</field>
+            <field name="name">SuiteMaster</field>
+            <field name="ks_active">true</field>
+            <field name="ks_global">true</field>
+        </record>
+
+        <!-- Inherit Default Values of Login Background Color -->
+        <record model="ks.login.background.color" id="ks_login_color_default_0">
+            <field name="ks_active">true</field>
+            <field name="ks_color">#e6e6e6</field>
+        </record>
+
+
+    </data>
+</odoo>

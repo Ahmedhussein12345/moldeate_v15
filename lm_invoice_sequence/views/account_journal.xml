@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_moldeat_account_journal_inherit_form" model="ir.ui.view">
+        <field name="name">moldeate.account.journal.inherit.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='code']" position="before">
+                <field name="is_moldeate_seq" attrs="{'invisible': [('type', '!=', 'sale')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ol_inventory_rights_update_button_replace" model="ir.ui.view">
+        <field name="name">ol.inventory.rights.update.button</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_update_quantity_on_hand']" position="replace">
+                <button string="Update Quantity" type="object" groups="ol_inventory_rights.warehouse_user" name="action_update_quantity_on_hand" attrs="{'invisible': [('type', '!=', 'product')]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="ol_inventory_rights_smart_button_remove" model="ir.ui.view">
+        <field name="name">ol.inventory.rights.update.button</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_quants']" position="replace">
+                <button type="object" name="action_open_quants" groups="ol_inventory_rights.warehouse_user" attrs="{'invisible':[('show_on_hand_qty_status_button', '=', False)]}" class="oe_stat_button" icon="fa-cubes">
+                    <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value" widget="statinfo">
+                                    <field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">On Hand</span>
+                            </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    action_open_quants
+    
+</odoo>

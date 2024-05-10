@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- <delete model="ir.ui.view" search="[('id','=', ref('website.login_layout'))]"/> -->
+
+	<data>
+		<record id="website.login_layout" model="ir.ui.view">
+			<field name="active" eval="False"/>
+		</record>
+	</data>
+</odoo>

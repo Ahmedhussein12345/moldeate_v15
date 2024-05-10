@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="layout_FC" inherit_id="web.login_layout">
+            <xpath expr="//div[hasclass('border-top')]" position="replace">
+            </xpath>
+        </template>
+    </data>
+</odoo>

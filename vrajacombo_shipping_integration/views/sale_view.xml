@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_fedex_third_party" model="ir.ui.view">
+        <field name="name">sale.order.fedex.thirdparty</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="fedex_bill_by_third_party_sale_order"
+                       attrs="{'readonly':[('state','in',('cancel','sale'))]}"/>
+                <field name="fedex_third_party_account_number_sale_order"
+                       attrs="{'invisible': [('fedex_bill_by_third_party_sale_order', '!=', True)], 'required':[('fedex_bill_by_third_party_sale_order', '!=', False)], 'readonly':[('state','in',('cancel','sale'))]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+<!--    stamps.com-->
+    <record id="stamp_shipping_charge_page_add_in_sale_order_form_view" model="ir.ui.view">
+            <field name="name">Sales Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Stamp Shipping Charges">
+                        <field name="stamp_shipping_charge_ids" readonly="1">
+                            <tree nolabel="1" readonly="1">
+                                <field name="stamp_service_name"/>
+                                <field name="stamp_service_delivery_date" />
+                                <field name="stamp_service_rate"/>
+                                <button type='object' class="fa fa-arrow-right oe_link" name="set_service"
+                                        string="Use Service"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="stamp_shipping_charge_id" readonly="1"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+<!--    GLS Location Code-->
+    <data>
+        <record id="gls_location_page" model="ir.ui.view">
+            <field name="name">Sales Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Gls Locations">
+                        <field name="gls_location_ids" readonly="1">
+                            <tree nolabel="1" readonly="1">
+                                <field name="gls_location_parcelshopid"/>
+                                <field name="gls_location_name1"/>
+<!--                                <field name="gls_location_name2"/>-->
+                                <field name="gls_location_countrycode"/>
+                                <field name="gls_location_zipcode"/>
+                                <field name="gls_location_city"/>
+                                <field name="gls_location_street"/>
+                                <field name="gls_location_streetnumber"/>
+                                <button type='object' class="fa fa-arrow-right oe_link" name="set_location"
+                                        string="Use Location"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="gls_location_id" readonly="1"/>
+                            <button type='object' class="fa fa-arrow-right oe_link" name="get_locations"
+                                    string="Get Locations"/>
+
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+<!--    ups-->
+    <data>
+        <record id="ups_location_page" model="ir.ui.view">
+            <field name="name">Sales Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page string="UPS Locations">
+                        <group>
+                            <field name="ups_service_rate" readonly="1"/>
+                        </group>
+                        <field name="ups_shipping_location_ids" readonly="1">
+                            <tree nolabel="1" readonly="1">
+                                <field name="location_id" />
+                                <field name="street"/>
+                                <field name="street2"/>
+                                <field name="city"/>
+                                <field name="state_code"/>
+                                <field name="zip"/>
+                                <field name="country_code"/>
+                                <button type='object' class="fa fa-arrow-right oe_link" name="set_location"
+                                        string="Use Location"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="ups_shipping_location_id" readonly="1"/>
+                            <button type='object' class="fa fa-arrow-right oe_link" name="ups_get_locations"
+                                    string="Get Locations"/>
+
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>			

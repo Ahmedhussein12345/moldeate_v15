@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="moldeate_inherit_delivery_report" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@class='row mt32 mb32']" position="after">
+            <div class="row mt32 mb32" id="moldeate_delivery">
+                <div t-if="o.location_id" class="col-auto" name="div_origin">
+                    <strong>Source Location:</strong>
+                    <p t-field="o.location_id"/>
+                </div>
+                <div t-if="o.location_dest_id" class="col-auto" name="div_sched_date">
+                    <strong>Destination Location:</strong>
+                    <p t-field="o.location_dest_id"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

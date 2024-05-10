@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+<!--     <t t-name="sh_barcode_scanner.stock_adjustment.tree.scan_button">
+        <button type="button" class="btn btn-secondary o_button_generate_leads">
+            Generate Leads
+        </button>
+    </t>
+
+    <t t-extend="ListView.buttons" t-name="sh_barcode_scanner.stock_adjustment.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-call="sh_barcode_scanner.stock_adjustment.tree.scan_button"/>
+        </t>
+    </t> -->
+
+    
+
+<t t-name="sh_barcode_scanner.stock_adjustment.tree.scan_feature">
+  <div class="row js_cls_sh_barcode_scanner_scanning_wrapper" style='align-items: center;padding: 10px 16px;'>
+    <div class="col-md-4" t-if="widget.sh_barcode_scanner_user_has_stock_multi_locations">
+		
+		<div class="form-group mb-0">
+		  <select class="form-control js_cls_sh_barcode_scanner_location_select">
+		  	<t t-foreach="widget.sh_barcode_scanner_locations" t-as="dic_location">
+		  		<option t-att-value="dic_location.id" t-att-selected="dic_location.id == widget.sh_barcode_scanner_location_selected and 'selected' or None">
+		  			<span t-esc="dic_location.display_name"/> 
+		  		</option>
+		  	</t>
+		  </select>
+		</div>
+
+
+    </div>
+    <div class="col-md-3 ">
+      <input type="text" class="form-control js_cls_sh_barcode_scanner_stock_quant_tree_input_barcode" placeholder="barcode"/>
+    </div>
+    <div class="col-md-4" t-if="widget.sh_barcode_scanner_user_is_stock_manager" style="display:flex; justify-content: flex-start; align-items: center;">
+    <div style="margin-right: 10px; " >
+ 
+      <input type="checkbox" t-att-value="scan_negative_stock_value" class="form-control scan_negative_stock_cls" name="scan_negative_stock" style="height:15px; width:15px;" t-att-checked="widget.sh_scan_negative_stock == 'true' ? true : undefined"  />
+
+    </div>
+    <div style="margin-right: 50px;">
+      <label for="scan_negative_stock"> Negative Counted Quantity?</label>
+    </div>
+
+    <div>  
+      <a href="" class="btn btn-primary js_cls_sh_barcode_scanner_stock_quant_tree_btn_apply">
+        <i class="fa fa-fw o_button_icon fa-save"></i><span>Apply</span>
+      </a>
+    </div>
+    </div>
+
+    
+  </div>
+</t>
+
+
+</templates>

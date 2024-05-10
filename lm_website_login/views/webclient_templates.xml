@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="lm_web_login_layout" name="Web Login Layout">
+        <t t-call="web.frontend_layout">
+            <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+            <t t-set="body_classname" t-value="'bg-100'"/>
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+       
+                <section class="s_text_image o_colored_level pt208 pb128 oe_img_bg o_bg_img_center" 
+                    style="background-image: url('/lm_website_login/static/description/lm_bg.jpeg'); position: relative;">
+
+                    <div class="o_we_shape o_web_editor_Wavy_25" style="background-image: url('/lm_website_login/static/description/25.svg'); 
+                        background-color: rgba(19, 95, 149, 0.33) !important; background-size: 100% auto; background-repeat: no-repeat no-repeat; background-position: top;">
+                    </div>
+
+
+                    <div class="container py-5">
+                        <!-- <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                            <div class="card-body"> -->
+
+                                <!-- <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                    <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                                </div> -->
+
+                                <t t-out="0"/>
+
+                                
+                                <!-- <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                    <t t-if="not disable_database_manager">
+                                        <a class="border-right pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                                    </t>
+                                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                                </div> -->
+
+
+                            <!-- </div>
+                        </div> -->
+                    </div>
+
+                </section>                                
+
+        </t>
+    </template>
+
+    <template id="web_login_inherit" inherit_id="web.login" name="Web Login Inherit">
+        <xpath expr="//t[@t-call='web.login_layout']" position="replace">
+   			<t t-call="lm_website_login.lm_web_login_layout">
+
+                    <div class="row align-items-start">
+                        <div class="col-lg-6 pt16 pb16 o_colored_level" style="">
+                            <section class="s_embed_code o_half_screen_height text-center">
+                                <div class="s_embed_code_embedded container o_not_editable">
+                                    <div class="oe_website_login_container">
+                                        <div class="logintitle">
+                                        <h2>
+                                            <b>Suite<span>Master</span></b>
+                                        </h2>
+                                        </div>
+
+                                            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                                <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
+                                                    <label for="db" class="col-form-label">Database</label>
+                                                    <div t-attf-class="input-group {{'input-group-sm' if form_small else ''}}">
+                                                        <input type="text" name="db" t-att-value="request.db" id="db" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" required="required" readonly="readonly"/>
+                                                        <span class="input-group-append">
+                                                            <a role="button" href="/web/database/selector" class="btn loginbtn">Select <i class="fa fa-database" role="img" aria-label="Database" title="Database"/></a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group field-login">
+                                                    <label for="login">Email</label>
+                                                    <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" 
+                                                        required="required" autofocus="autofocus" autocapitalize="off" class="form-control "/>
+                                                </div>
+                                                <div class="form-group field-password">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" placeholder="Password" name="password" id="password" t-attf-class="form-control #{'form-control-sm' if form_small else ''}" 
+                                                        required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" class="form-control "/>
+                                                </div>
+
+                                                <p class="alert alert-danger" t-if="error" role="alert">
+                                                    <t t-esc="error"/>
+                                                </p>
+                                                <p class="alert alert-success" t-if="message" role="status">
+                                                    <t t-esc="message"/>
+                                                </p>
+
+                                                <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}">
+                                                    <button type="submit" class="btn loginbtn btn-block">Log in</button>
+                                                    <div class="justify-content-between mt-2 d-flex small link-binary">
+                                                        <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a>
+                                                        <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Reset Password</a>
+                                                    </div>
+                                                    <div class="o_login_auth">
+                                                </div>
+                                                    <input type="hidden" name="redirect"/>
+                                                </div>
+                                            </form>
+
+                                    </div>
+                                </div>
+                            </section>
+                        </div>  
+
+                        <div class="col-lg-6 pb16 o_colored_level pt80">
+                            <h2>
+                                <span style="font-size: 48px;">
+                                    <font class="text-o-color-4" style="font-weight: bolder;">A Section Subtitle</font>
+                                </span>
+                            </h2>
+                            <p>
+                                <font class="text-o-color-4">Write one or two paragraphs describing your product or services. To be successful your content needs to be useful to your readers.</font>
+                            </p>
+                            <p class="o_default_snippet_text">
+                                <font class="text-o-color-4">Start with the customer – find out what they want and give it to them.</font>
+                            </p>
+                        </div>
+
+                    </div>
+            </t>
+   		</xpath> 
+   		
+    </template>
+    
+
+</odoo>

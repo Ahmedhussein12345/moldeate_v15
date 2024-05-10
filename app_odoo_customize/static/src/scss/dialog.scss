@@ -1,0 +1,42 @@
+.modal  {
+    .modal-content  {
+        .modal-header.ui-draggable-handle   {
+            cursor: move;
+        }
+    }
+}
+// No content helper
+.o_view_nocontent {
+    @include o-position-absolute(30%, 0, 0, 0);
+    pointer-events: none;
+    z-index: 1;
+
+    .o_nocontent_help {
+        @include o-nocontent-empty;
+
+        .o_view_nocontent_smiling_face:before {
+            @extend %o-nocontent-init-image;
+            @include size(120px, 140px);
+            background: transparent url(/app_odoo_customize/static/src/img/background_face.png) no-repeat center;
+
+        }
+
+        .o_view_nocontent_neutral_face:before {
+            @extend %o-nocontent-init-image;
+            @include size(120px, 140px);
+            background: transparent url(/app_odoo_customize/static/src/img/background_face.png) no-repeat center;
+        }
+
+        .o_view_nocontent_empty_folder:before {
+            @extend %o-nocontent-empty-document;
+        }
+
+        .o_empty_custom_dashboard {
+            min-height: 327px;
+            margin-left: -$grid-gutter-width/2;
+            margin-top: -$grid-gutter-width/2;
+            padding: 100px 0 0 137px;
+            background: transparent url(/web/static/img/graph_background.png) no-repeat 0 0;
+        }
+    }
+}

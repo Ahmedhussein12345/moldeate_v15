@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="app_res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">app.res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="appstore" position="inside">
+                    <field name="app_show_about" invisible="1"/>
+                    <field name="app_show_developer_tool" invisible="1"/>
+                </div>
+                <div id="about" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_about', '=', False)]}</attribute>
+                </div>
+                <xpath expr="//widget[@name='res_config_dev_tool']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_developer_tool', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="app_res_config_settings_view_form_digest" model="ir.ui.view">
+            <field name="name">app.res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="digest.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="statistics" position="inside">
+                    <field name="app_show_statistics" invisible="1"/>
+                </div>
+                <div id="statistics" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_statistics', '=', False)]}</attribute>
+                </div>
+            </field>
+
+        </record>
+        <record id="app_res_config_settings_view_form_integrations" model="ir.ui.view">
+            <field name="name">app.res.config.settings.view.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <div name="integration" position="inside">
+                    <field name="app_show_integration" invisible="1"/>
+                </div>
+                <div name="integration" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_integration', '=', False)]}</attribute>
+                </div>
+                <xpath expr="//h2[4]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_integration', '=', False)]}</attribute>
+                </xpath>
+                <div id="contacts_settings" position="inside">
+                    <field name="app_show_contacts_settings" invisible="1"/>
+                </div>
+                <div id="contacts_settings" position="attributes">
+                    <attribute name="attrs">{'invisible': [('app_show_contacts_settings', '=', False)]}</attribute>
+                </div>
+        </field>
+
+    </record>
+</data>
+        </odoo>

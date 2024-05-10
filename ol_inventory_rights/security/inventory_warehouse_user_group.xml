@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="group_user" model="res.groups">     
+  <field name="category_id" ref="base.module_category_inventory_inventory"></field>                           
+  <field name="name">Warehouse User</field>                                                           
+</record>                            
+ <record id="warehouse_user" model="res.groups">     
+  <field name="category_id" ref="base.module_category_inventory_inventory"></field>                           
+  <field name="name">Product Update button Disable</field>                                                           
+</record>                            
+                            
+
+</odoo>

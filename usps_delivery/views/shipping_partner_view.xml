@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shipping_partner_form" model="ir.ui.view">
+        <field name="name">USPS Configuration</field>
+        <field name="model">shipping.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_shipping_partner.view_shipping_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='api_credential']/group"
+                   position="inside">
+                <group attrs="{'invisible': [('provider_company', '!=', 'usps_ts')]}">
+                    <field name="usps_user_id"
+                           attrs="{'invisible':[('provider_company','!=','usps_ts')],'required':[('provider_company','=','usps_ts')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="internal_layout_header_invoice_new" inherit_id="web.internal_layout">
+        <xpath expr="//div[hasclass('header')]" position="replace">
+
+            <div class="header">
+                <t t-set="report_name" t-value="env['ir.actions.report'].search([('report_name', '=', xmlid)]).name"/>
+                <t t-if="report_name == 'Invoice (International)'">
+
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="19%" style="text-align: center;">
+                                <img src="/sale_order_extend_report/static/img/imgpsh_fullsize_anim.png"
+                                     style="margin-top: 20px; max-width: 400px" width="80%"/>
+
+                            </td>
+                            <td width="5%" style="text-align: center;">
+                            </td>
+                            <td width="40%" style="text-align: center;">
+                                <span>
+                                    <strong>MOLDEATE WORLD</strong>
+                                </span>
+                                <br></br>
+                                <span>
+                                    <strong>4264 WINTERS CHAPEL RD</strong>
+                                </span>
+                                <br></br>
+                                <span>BUILDING B SUITE B</span>
+                                <br></br>
+                                <span>ATLANTA, GA 30360</span>
+                                <br></br>
+                                <strong>UNITED STATES</strong>
+
+                            </td>
+                            <td width="35%">
+                                <span>ELECTRONIC SALES INVOICE</span>
+                                <br></br>
+                                <table align="center">
+                                    <tr>
+                                        <td width="30%"></td>
+                                        <td style="border-top: 1px solid; border-right: 1px solid; border-bottom: 1px solid; border-left: 1px solid; border-radius:5px 30px 30px 5px;">
+                                            <!--                                            <t t-if="o.invoice_ids">-->
+                                            <span>
+                                                <t t-esc="o.name"/>
+                                            </span>
+                                            <!--                                            </t>-->
+                                        </td>
+                                        <td width="30%"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr width="100%">
+                            <td colspan="3" style="text-align: left;">
+                                <span>
+                                    payments@moldeateworld.com
+                                </span>
+                                <br></br>
+                                <span>
+                                    www.moldeateworld.com
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
+                <t t-else="">
+                    <!--                  <style>table,tr,td {border: 1px solid black;}</style>-->
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="19%" style="text-align: left;">
+                                <img src="/sale_order_extend_report/static/img/imgpsh_fullsize_anim.png"
+                                     style="margin-top: 20px; max-width: 400px" width="80%"/>
+
+                            </td>
+                            <td width="9%" style="text-align: center;">
+
+                            </td>
+                            <td width="40%" style="text-align: center;">
+                                <span>
+                                    <strong>MOLDEATE WORLD</strong>
+                                </span>
+                                <br></br>
+                                <span>
+                                    <strong>4264 WINTERS CHAPEL RD</strong>
+                                </span>
+                                <br></br>
+                                <span>BUILDING B SUITE B</span>
+                                <br></br>
+                                <span>ATLANTA, GA 30360</span>
+                                <br></br>
+                                <span>UNITED STATES</span>
+
+                            </td>
+                            <td width="32%" style="text-align: right;">
+                                <span>
+                                    <strong>Email:</strong>
+                                    payments@moldeateworld.com
+                                </span>
+                                <br></br>
+                                <span>
+                                    www.moldeateworld.com
+                                </span>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="action_international_report_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="sale_order_extend_report.internal_layout_header_invoice_new">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <br></br>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td colspan="3"
+                                    style="border-top: 1px solid; border-right: 1px solid; border-bottom: 1px solid; border-left: 1px solid; background-color: #cccccc;">
+                                    <strong>Customer Information: &#160;</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <strong>Business Information: &#160;</strong>
+                                    <span t-field="o.partner_id.name"/>
+                                </td>
+                                <td width="33%">
+                                    <strong>Invoice Date: &#160;</strong>
+                                    <!--                                    <t t-if="o.invoice_ids">-->
+                                    <span t-field="o.invoice_date"/>
+                                    <!--                                    </t>-->
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Expiration Date &#160;</strong>
+                                    <!--                                    <t t-if="o.picking_ids">-->
+                                    <span t-field="o.invoice_date_due"/>
+                                    <!--                                    </t>-->
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <strong>ID: &#160;</strong>
+                                    <span t-field="o.partner_id.vat"/>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Seller &#160;</strong>
+                                    <span t-field="o.user_id.name"/>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Payment Method: &#160;</strong>
+                                    <span t-field="o.partner_id.id"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <strong>Address &#160;</strong>
+                                    <span t-esc="o.partner_id.street"/>,<span t-esc="o.partner_id.street2"/>,
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Purchase Order &#160;</strong>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Pay Date: &#160;</strong>
+                                    <!--                                    <span>-->
+                                    <!--                                        <span t-field="o.payment_term_id.name"/> &#160;&#160;&#160;-->
+                                    <!--                                    </span>-->
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <strong>City, State, Zip Code &#160;</strong>
+                                    <span t-field="o.partner_id.city"/>,<span t-field="o.partner_id.state_id.name"/>,
+                                    <span t-esc="o.partner_id.zip"/>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Phone Number: &#160;</strong>
+                                    <span t-field="o.partner_id.phone"/>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Days Term: &#160;</strong>
+                                    <span>0</span>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <br></br>
+
+                                </td>
+                                <td width="33%">
+                                    <br></br>
+
+                                </td>
+                                <td width="33%">
+                                    <br></br>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="33%">
+                                    <strong>Incoterm &#160;</strong>
+                                    <span t-field="o.invoice_incoterm_id.name"/>&#160;
+
+                                </td>
+                                <td width="33%">
+                                    <strong>No. of Boxes &#160;</strong>
+                                    <span>9</span>
+
+                                </td>
+                                <td width="33%">
+                                    <strong>Weight</strong>
+                                    <span>
+                                        <t t-esc="o.get_product_weight()"/> &#160;&#160;&#160;
+                                    </span>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <br></br>
+
+                        <t t-set="total" t-value="0"/>
+                        <t t-set="total_unit" t-value="0"/>
+                        <t t-set="discount" t-value="0"/>
+                        <t t-set="i" t-value="1"/>
+                        <table width="100%" class="table table-sm o_main_table">
+                            <thead>
+                                <tr style="background-color: #cccccc;">
+                                    <th width="4%">
+                                        <strong>Item</strong>
+                                    </th>
+                                    <th width="6%">
+                                        <strong>Reference</strong>
+                                    </th>
+                                    <th width="35%" class="text-center">
+                                        <strong>Description</strong>
+                                    </th>
+                                    <th class="text-right" width="13%">
+                                        <strong>Fabric Plane</strong>
+                                    </th>
+                                    <th class="text-center" width="3%">
+                                        <strong>Unit</strong>
+                                    </th>
+                                    <th width="10%" class="text-center">
+                                        <strong>Quantity</strong>
+                                    </th>
+                                    <th width="15%">
+                                        <strong>Unit Value</strong>
+                                    </th>
+                                    <th class="text-right" width="15%">
+                                        <strong>Total Value</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                    <td>
+                                        <t t-esc="i"/>
+                                        <t t-set="i" t-value="i+1"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.product_id.default_code"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.product_id.name"/>,
+                                        <br></br>
+                                        <span t-field="line.product_id.x_external_lining"/>,
+                                        <br></br>
+                                        <span t-field="line.product_id.x_internal_lining"/>,
+                                        <br></br>
+                                        <span t-field="line.product_id.x_medium_lining"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.product_id.x_tariff"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.product_uom_id.name"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <span t-field="line.price_unit"
+                                              t-options='{"widget": "monetary"}'/> <!--t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}' -->
+                                    </td>
+                                    <t t-set="total" t-value="total+line.price_subtotal"/>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                    <t t-set="discount" t-value="discount+line.discount"/>
+                                    <t t-set="total_unit" t-value="total_unit+line.quantity"/>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--                                                <style>table, tr,td {border: 1px solid}</style>-->
+                        <style>.column_new {border: 1px solid}</style>
+                        <table width="100%" class="column_new">
+                            <table width="100%">
+                                <tr width="100%" class="column_new" style="font-size: 11px;">
+                                    <td width="25%">
+                                        <strong>Note:</strong>
+                                        <br></br>
+                                        <br></br>
+                                        <span>Payment by Bank Transfer</span>
+                                        <br></br>
+                                        <span>Reflection of you LLC</span>
+                                        <br></br>
+                                        <span>Dba Moldeate World</span>
+                                        <br></br>
+                                        <span>3535 PEACHTREE RD NE</span>
+                                        <br></br>
+                                        <span>SUITE 520 # 519</span>
+                                        <br></br>
+                                        <span>ATLANTA, GA 30326</span>
+                                        <br></br>
+                                        <span>UNITED STATES</span>
+                                        <br></br>
+                                        <br></br>
+                                        <span>Regions bank</span>
+                                        <br></br>
+                                        <span>ACCOUNT NUMBER</span>
+                                        <br></br>
+                                        <span>321530211</span>
+                                        <br></br>
+                                        <span>ROUTING NUMBER</span>
+                                        <br></br>
+                                        <span>061101375</span>
+                                        <br></br>
+                                        <br></br>
+                                        <span>Swift code</span>
+                                        <br></br>
+                                        <span>UPNBUS44</span>
+                                    </td>
+                                    <td width="55%"
+                                        style="font-size: 11px; border-left: 1px solid black; border-bottom: 1px solid black;">
+                                        <strong>
+                                            <span style="text-align: center">ALWAYS ASK YOUR RECEIPT AFTER YOUR</span>
+                                        </strong>
+                                        <br></br>
+                                        <span>This invoice under Art. 774 from the Chamber of Commerce is a legal
+                                            document that becomes a "Letter of Exchange"
+                                        </span>
+                                        <br></br>
+                                        <span>if it is unpaid under the stipulated payment terms and it may be subject
+                                            to additional interests.
+                                        </span>
+                                        <br></br>
+                                        <span>This is an Invoice subject to the Law 1231 from July 2008 and the Chamber
+                                            of Commerce Code.
+                                        </span>
+                                        <br></br>
+                                        <br></br>
+                                        <span>Observations</span>
+                                        <br></br>
+                                        <span>,18973,18975,18977,19209,19231,19292,19293,19308,</span>
+
+                                    </td>
+                                    <td width="20%">
+                                        <table width="100%" class="column_new">
+                                            <tr width="100%" class="column_new">
+                                                <td class="column_new" width="50%" style="text-align: center;">
+                                                    <span>
+                                                        <strong>Total</strong>
+                                                    </span>
+                                                </td>
+                                                <td class="column_new" style="text-align: right;" width="50%">
+                                                    <!--                                                    <span t-esc="total"/>-->
+                                                    <span t-esc="'%.2f'%(total)"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="column_new">
+                                                <td class="column_new" style="text-align: center;">
+                                                    <strong>Discount</strong>
+                                                </td>
+                                                <td class="column_new" style="text-align: right;">
+                                                    <!--                                                    <span t-esc="discount"/>-->
+                                                    <span t-esc="'%.2f'%(discount)"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="column_new">
+                                                <td class="column_new" style="text-align: center;">
+                                                    <strong>Subtotal</strong>
+                                                </td>
+                                                <td class="column_new" style="text-align: right;">
+                                                    <!--                                                    <span t-esc="total-discount"/>-->
+                                                    <span t-esc="'%.2f'%(total+discount)"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="column_new">
+                                                <td class="column_new" style="text-align: center;">
+                                                    <strong>Net Total</strong>
+                                                </td>
+                                                <td class="column_new" style="text-align: right;">
+                                                    <span t-esc="o.amount_total"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="column_new">
+                                                <td class="column_new" style="text-align: center;">
+                                                    <strong>Tracking Ref</strong>
+                                                </td>
+                                                <td class="column_new" style="text-align: right;">
+                                                    <span t-esc="o.tracking_number"/>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="2" style="text-align: center;">
+                                                    <span>Total Units</span>
+                                                    <t t-esc="total_unit"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </table>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="100%">
+                                    <span>Or Secure Payment Link</span>
+                                    <br></br>
+                                    <span href="url" style="font-size: 95%">
+                                        https://www.convergepay.com/hosted-payments?ssl_txn_auth_token=Y64HAwe%2FSE%2BPSdCMJUsCYgAAAYzp2BPP
+                                    </span>
+                                    <br></br>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

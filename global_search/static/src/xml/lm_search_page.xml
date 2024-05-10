@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<!--
+	Modification in default Widget
+	@param {web.AppsMenu} widget
+	-->
+	<t t-name="global_search.ks_search_page">
+        <t t-set="count" t-value="0" />
+        <div class="d-flex my-3">
+            <div class="ks_close_result cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="ks_search_result_arrow">
+                    <path d="M15 8H1" stroke="#616266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M8 15L1 8L8 1" stroke="#616266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="o_base_settings">
+            <div class="o_setting_container">
+                <div class="settings_tab search_result_tab">
+                    <t t-foreach="key_list" t-as="menu_keys">
+                    <t t-set="menu_tab" t-value="menu_keys" />
+                        <div class="tab ks_search_result_tab" t-attf-data-key="#{menu_tab}" role="tab">
+                            <t t-if="icons[menu_tab]">
+                                <img class="icon " t-attf-src="data:image/png;base64,{{icons[menu_tab]}}" alt="Search"/>
+                            </t>
+                            <p>
+                                <span class="app_name ks_search_page_table_name" t-esc="menu_tab" />
+                                <span class="ks_results_count" t-esc="rec_count[menu_tab]" />
+                            </p>
+                        </div>
+                    </t>
+                    <t t-foreach="remain_table" t-as="menu_keys">
+                        <div class="tab ks_search_result_tab" t-attf-data-key="#{menu_keys}" role="tab">
+                            <t t-if="icons[menu_keys]">
+                                <img class="icon " t-attf-src="data:image/png;base64,{{icons[menu_keys]}}" alt="Search"/>
+                            </t>
+                            <p>
+                                <span class="app_name ks_search_page_table_name" t-esc="menu_keys" />
+                                <span class="ks_results_count">0 Results</span>
+                            </p>
+                        </div>
+                    </t>
+                </div>
+
+                <div class="settings search_result_table">
+                    <t t-foreach="ks_data_key" t-as="ks_keys">
+                    <t t-set="keys" t-value="ks_keys" />
+                    <div class="app_settings_block" t-attf-data-string="#{keys}" t-attf-string="#{keys}" t-attf-data-key="#{keys}">
+                        <div class="settingSearchHeader h4 ks_search_page_table_head" role="search">
+                            <t t-if="icons[keys]">
+                                <img class="icon " t-attf-src="data:image/png;base64,{{icons[keys]}}" alt="Search"/>
+                            </t>
+                            <div class="ks_search_page_table_details">
+                                <span class="appName ks_search_page_table_name" t-esc="keys"/>
+                                <span class="appName ks_search_page_table_name ks_result_rec_count"><t t-esc="rec_count[keys]" /> Results</span>
+                            </div>
+                        </div>
+                        <div class="o_list_view">
+                            <div class="table-responsive">
+                                <table class="o_list_table table table-sm table-hover table-striped o_list_table_ungrouped" style="table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <t t-foreach="ks_data_key[[ks_keys]]" t-as="key">
+                                                <th class="o_handle_cell o-sort-up o_column_sortable o_list_number_th text-left" tabindex="-1" aria-sort="ascending" data-original-title="" title="" style="min-width: 33px; width: 80px;"><t t-esc="ks_data_key[[ks_keys]][[key]]"/></th>
+                                            </t>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="ui-sortable">
+                                        <t t-foreach="records[[ks_keys]]" t-as="result">
+                                            <tr class="o_data_row o_list_no_open" data-id="global.search.fields_10">
+                                                <t t-foreach="ks_data_key[[ks_keys]]" t-as="key">
+                                                    <t t-set="field_name" t-value="records[[ks_keys]][result][key]" />
+                                                    <td class="o_data_cell o_field_cell o_list_number o_handle_cell" tabindex="-1" t-attf-class="{{field_name}}">
+                                                            <t t-if="typeof(records[[ks_keys]][result][key]) == 'object'">
+                                                                <a t-attf-class="dropdown-item col-12 ml-auto mr-auto px-0 ks_search_page_tab" t-raw="field_name[1]" t-attf-href="/mail/view?model=#{records[[ks_keys]][result]['model']}&amp;res_id=#{records[[ks_keys]][result]['id']}" />
+                                                            </t>
+                                                            <t t-else="">
+                                                                <t t-if="field_name">
+                                                                    <a t-attf-class="dropdown-item col-12 ml-auto mr-auto px-0 ks_search_page_tab" t-raw="field_name" t-attf-href="/mail/view?model=#{records[[ks_keys]][result]['model']}&amp;res_id=#{records[[ks_keys]][result]['id']}" />
+                                                                </t>
+<!--                                                                <t t-else="">-->
+<!--                                                                    <a t-attf-class="dropdown-item col-12 ml-auto mr-auto px-0 ks_search_page_tab" t-raw=" " t-attf-href="/mail/view?model=#{records[[ks_keys]][result]['model']}&amp;res_id=#{records[[ks_keys]][result]['id']}" />-->
+<!--                                                                </t>-->
+                                                            </t>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+
+
+
+                    <t t-foreach="remain_table" t-as="ks_keys">
+                    <t t-set="keys" t-value="ks_keys" />
+                    <div class="app_settings_block" t-attf-data-string="#{keys}" t-attf-string="#{keys}" t-attf-data-key="#{keys}">
+                        <div class="settingSearchHeader h4 ks_search_page_table_head" role="search">
+                            <t t-if="icons[keys]">
+                                <img class="icon " t-attf-src="data:image/png;base64,{{icons[keys]}}" alt="Search"/>
+                            </t>
+                            <div class="ks_search_page_table_details">
+                                <span class="appName ks_search_page_table_name" t-esc="keys"/>
+                                <span class="appName ks_search_page_table_name ks_result_rec_count">0</span>
+                            </div>
+                        </div>
+                        <div class="o_list_view">
+                            <div class="table-responsive">
+                                <span class="ks_search_no_result">No Result Found</span>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+
+</templates>

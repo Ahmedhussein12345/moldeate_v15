@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.view</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Configuration" name="ups_configurations"
+                      attrs="{'invisible': [('delivery_type', '!=', 'ups_ts')]}">
+                    <group>
+                        <group>
+                            <field name="ups_service_type"
+                                   attrs="{'required': [('delivery_type', '=', 'ups_ts')]}"/>
+                            <field name="ups_package_weight_uom"
+                                   attrs="{'required': [('delivery_type', '=', 'ups_ts')]}"/>
+                            <field name="ups_package_dimension_unit_ts"
+                                   attrs="{'required': [('delivery_type', '=', 'ups_ts')]}"/>
+                        </group>
+                        <group>
+                            <field name="ups_product_packaging_id"
+                                   attrs="{'required': [('delivery_type', '=', 'ups_ts')]}"
+                                   domain="[('package_carrier_type', '=', 'ups_ts')]"/>
+                            <field name="ups_label_file_type"
+                                   attrs="{'required': [('delivery_type', '=', 'ups_ts')]}"/>
+                            <field name="ups_international_form_type" />
+                            <field name="ups_terms_of_shipments" attrs="{'invisible': [('ups_international_form_type', '=', False)],
+                                'required': [('ups_international_form_type', '!=', False)]}"/>
+                            <!--<field name="ups_cn_22_size" attrs="{'required': [('delivery_type', '=', 'ups_ts'), ('ups_international_form_type', '=', '09')],
+                            'invisible': [('ups_international_form_type', '=', False)]}"/>
+                            <field name="ups_cn_22_file_type" attrs="{'required': [('delivery_type', '=', 'ups_ts'), ('ups_international_form_type', '=', '09')],
+                            'invisible': [('ups_international_form_type', '=', False)]}"/>-->
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

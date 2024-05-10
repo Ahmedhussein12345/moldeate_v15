@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="validate_restriction_user_d" model="ir.ui.view" >
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_line_ids_without_package']" position="replace">
+                      <field name="move_line_ids_without_package">
+                       <tree string="Move Lines" default_order="date">
+                            <field name="date"/>
+                            <field name="reference" string="Reference" invisible="context.get('no_reference', False)"/>
+                            <field name="product_id"/>
+                            <field name="lot_id" groups="stock.group_production_lot"/>
+                            <field name="location_id" groups="stock.group_stock_multi_locations"/>
+                            <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
+                            <field name="compute_grp" invisible="1"/> 
+                            <field name="qty_done" attrs="{'readonly':[('compute_grp','=',False)]}"></field> 
+                            <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
+                            <field name="company_id" groups="base.group_multi_company" force_save="1"/>
+                            <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')"/>
+                        
+                         </tree>
+                        </field>
+                </xpath>
+            </field>
+        </record>
+        <record id="validate_restriction_user_form_view" model="ir.ui.view">
+        <field  name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty_done']" position="replace">
+                      <field name="compute_grp" invisible="1"/> 
+                      <field name="qty_done" attrs="{'readonly':[('compute_grp','=',False)]}" >
+                        </field>
+                </xpath>
+            </field>
+        </record>
+        
+
+</odoo>
+

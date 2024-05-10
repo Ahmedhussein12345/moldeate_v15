@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_report_sale_order" model="report.paperformat">
+        <field name="name">Order (Domestic)</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">45</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="new_action_international_custom_report_sale_order" model="ir.actions.report">
+        <field name="name">Order (International)</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_order_extend_report.action_international_report_sale_order</field>
+        <field name="report_file">sale_order_extend_report.action_international_report_sale_order</field>
+        <field name="print_report_name">('International Order - %s' % (object.name)) or 'Order - %s' % (object.name)
+        </field>
+        <field name="paperformat_id" ref="sale_order_extend_report.paperformat_report_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <template id="action_international_report_sale_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale_order_extend_report.report_custom_sale_order"
+                   t-lang="doc.company_id.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+
+
+    <record id="action_custom_report_sale_order" model="ir.actions.report">
+        <field name="name">Order (Domestic)</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sale_order_extend_report.action_report_sale_order</field>
+        <field name="report_file">sale_order_extend_report.action_report_sale_order</field>
+        <field name="print_report_name">('Domestic Order - %s' % (object.name)) or 'Order - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="paperformat_id" ref="sale_order_extend_report.paperformat_report_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

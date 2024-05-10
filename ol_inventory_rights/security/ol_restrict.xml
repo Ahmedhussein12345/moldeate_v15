@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+
+    <record id="group_restriction_inventory_done_validate" model="res.groups">
+        <field name="name">Inventory Validate</field>
+    </record>
+
+
+</odoo>
+

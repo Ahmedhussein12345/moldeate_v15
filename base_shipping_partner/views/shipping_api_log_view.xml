@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="shipping_api_log_form_view" model="ir.ui.view">
+            <field name="name">shipping.api.log.form.view</field>
+            <field name="model">shipping.api.log</field>
+            <field name="arch" type="xml">
+                <form string="Log" create="0" edit="0">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="shipping_partner_id"/>
+                            </group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page id="request_data" string="Request">
+                                <group>
+                                    <field name="request_data" nolabel="1"/>
+                                </group>
+                            </page>
+                            <page id="response_data" string="Response">
+                                <group>
+                                    <field name="response_data" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="shipping_api_log_tree_view" model="ir.ui.view">
+            <field name="name">shipping.api.log.tree.view</field>
+            <field name="model">shipping.api.log</field>
+            <field name="arch" type="xml">
+                <tree string="Log" create="0" edit="0">
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="shipping_partner_id"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_api_log_search_view" model="ir.ui.view">
+            <field name="name">shipping.api.log.search.view</field>
+            <field name="model">shipping.api.log</field>
+            <field name="arch" type="xml">
+                <search string="Log">
+                    <field name="name" string="Name"/>
+                    <field name="shipping_partner_id" string="Provider"/>
+                    <field name="user_id" string="User"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Provider" name="group_by_shipping_partner_id" domain="[]"
+                                context="{'group_by': 'shipping_partner_id'}"/>
+                        <filter string="User" name="group_by_user_id" domain="[]"
+                                context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_shipping_api_log_provider_wise" model="ir.actions.act_window">
+            <field name="name">Log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.api.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('shipping_partner_id', '=', active_id)]</field>
+        </record>
+    </data>
+</odoo>

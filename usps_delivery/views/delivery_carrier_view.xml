@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="name">delivery.carrier.form.view</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Configuration" name="usps_configurations" attrs="{'invisible': [('delivery_type', '!=', 'usps_ts')]}">
+                    <group>
+                        <group>
+                            <field name="usps_delivery_type" attrs="{'required': [('delivery_type', '=', 'usps_ts')]}"/>
+                            <field name="usps_service_type" attrs="{'required': [('delivery_type', '=', 'usps_ts')]}"/>
+                            <field name="usps_content_type" attrs="{'required': [('delivery_type', '=', 'usps')]}"/>
+                            <field name="usps_label_file_format" attrs="{'required': [('delivery_type', '=', 'usps_ts')]}"/>
+                            <field name="usps_label_size" attrs="{'required': [('delivery_type', '=', 'usps_ts')]}"/>
+                            <field name="usps_package_machinable"/>
+                        </group>
+                        <group>
+                            <field name="usps_domestic_container_type" attrs="{'invisible': ['|', ('usps_service_type', '=', 'First Class'), ('usps_delivery_type', '=', 'international')]}"/>
+                            <field name="usps_intl_container_type" attrs="{'invisible': ['|', ('usps_service_type', '=', 'First Class'), ('usps_delivery_type', '=', 'domestic')]}"/>
+                            <field name="usps_first_class_mail_type"
+                                   attrs="{'required': [('delivery_type', '=', 'usps_ts'), ('usps_service_type', '=', 'First Class')],
+                                   'invisible': [('usps_service_type','!=', 'First Class')]}"/>
+                            <field name="usps_mail_type"
+                                   attrs="{'required': [('delivery_type', '=', 'usps_ts'), ('usps_delivery_type', '=', 'international')], 'invisible': [('usps_delivery_type', '!=', 'international')]}"/>
+                            <field name="usps_product_packaging_id" domain="[('package_carrier_type', '=', 'usps_ts')]" context="{'default_package_carrier_type': 'usps_ts'}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

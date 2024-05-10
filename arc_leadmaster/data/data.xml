@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Inherit Default Values of global Settings -->
+        <!-- FixMe: Change the Default values of all fields -->
+        <record model="ks.global.config" id="ks_curved_backend_theme.ks_global_config_single_rec">
+            <field name="scope_ks_auto_dark_mode">Global</field>
+            <field name="scope_ks_list_density">Global</field>
+            <field name="scope_ks_click_edit">Global</field>
+            <field name="scope_ks_menu_bar">Global</field>
+            <field name="scope_ks_favorite_bar">Global</field>
+            <field name="scope_ks_chatter">Global</field>
+            <field name="scope_ks_website_title">Global</field>
+            <field name="scope_ks_favicon">Global</field>
+            <field name="scope_ks_company_logo">Global</field>
+            <field name="scope_ks_enterprise_apps">Global</field>
+            <field name="scope_ks_odoo_referral">Global</field>
+            <field name="scope_ks_theme_style">Global</field>
+            <field name="scope_ks_colors_theme">Global</field>
+            <field name="scope_ks_font_style">Global</field>
+            <field name="scope_ks_font_size">Global</field>
+            <field name="scope_ks_button_style">Global</field>
+            <field name="scope_ks_body_background">Global</field>
+            <field name="scope_ks_app_drawer_background">Global</field>
+            <field name="scope_ks_radio_button_style">Global</field>
+            <field name="scope_ks_separator_style">Global</field>
+            <field name="scope_ks_tab_style">Global</field>
+            <field name="scope_ks_checkbox_style">Global</field>
+            <field name="scope_ks_popup_animation_style">Global</field>
+            <field name="scope_ks_loaders">Global</field>
+            <field name="scope_ks_icon_design">Global</field>
+            <field name="scope_ks_login_page_style">Global</field>
+            <field name="scope_ks_login_background_image">Global</field>
+            <field name="scope_ks_header">Global</field>
+            <field name="scope_ks_footer">Global</field>
+            <field name="ks_click_edit">True</field>
+            <field name="ks_loaders">ks_loader_4</field>
+            <field name="ks_login_page_style">Style5</field>
+            <field name="ks_login_page_logo_enable">true</field>
+            <field name="ks_login_page_logo" type="base64" file="arc_leadmaster/static/img/comp_logo.png"/>
+            <field name="ks_chatter">ks_chatter_right</field>
+            <field name="ks_website_title_enable">True</field>
+            <field name="ks_website_title">SuiteMaster</field>
+            <field name="ks_company_logo_enable">True</field>
+            <field name="ks_small_company_logo" type="base64" file="arc_leadmaster/static/img/comp_logo.png"/>
+            <field name="ks_company_logo" type="base64" file="arc_leadmaster/static/img/comp_logo.png"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+.wrapEdit[view-type='graph'] {
+  ._wMainView {
+    height: 100%;
+    ._wGraphCon {
+      height: 100%;
+      padding: 50px;
+      background: white;
+    }
+    .o_graph_controller, .o_content {
+      height: 100%;
+    }
+  }
+}

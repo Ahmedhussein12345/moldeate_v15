@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="ks_global_search_templates" xml:space="preserve">
+    <t t-name="global_search.ks_MenuSearchResults_inherit" t-inherit-mode="extension" t-inherit="sh_global_search.MenuSearchResults" owl="1">
+        <xpath expr="//t[2]" position="replace">
+            <t t-foreach="results" t-as="result">
+                <t t-set="is_menu" t-value="widget._checkIsMenu(result)" />
+                <t t-set="menu" t-value="widget._linkInfo(result)" />
+                <t t-if="is_menu">
+                    <a t-attf-class="dropdown-item col-12 ml-auto mr-auto" t-attf-href="#menu_id=#{menu.id}&amp;action_id=#{menu.action}">
+                        <span t-esc="menu.name" />
+                    </a>
+                </t>
+                <t t-else="">
+                    <t t-if="count==0">
+                        <t t-set="menu_model" t-value="menu.model_name" />
+                        <t t-set="count" t-value="1" />
+                            <p class="search_company_detail ks_search_table_head">
+                                <t t-if="icons[menu.model_name]">
+                                    <img class="icon ks_search_table_icon" t-attf-src="data:image/png;base64,{{icons[menu.model_name]}}" alt="Search"/>
+                                </t>
+                                <t t-set="company_name" t-value="widget._getcompanyInfo(result)" />
+                                <t t-if="widget.show_company">
+                                    <t t-esc="company_name" /> : </t>
+                                <span><t t-esc="menu_model" /></span>
+                                <span><t t-esc="rec_count[menu_model]" /></span>
+                            </p>
+                    </t>
+
+                    <t t-if="menu.model_name == menu_model">
+                        <t t-set="field_name" t-value="widget._getFieldInfo(result)" />
+                            <t t-if="widget.show_company &amp; company_name!=widget._getcompanyInfo(result)">
+                                <t t-set="company_name" t-value="widget._getcompanyInfo(result)" />
+                                <p class="search_company_detail ks_search_table_head">
+                                    <t t-if="icons[menu.model_name]">
+                                        <img class="icon ks_search_table_icon" t-attf-src="data:image/png;base64,{{icons[menu.model_name]}}" alt="Search"/>
+                                    </t>
+                                    <t t-esc="company_name" /> : <t t-esc="menu_model" /></p>
+                            </t>
+
+                        <div>
+                            <a t-attf-class="dropdown-item col-12 ml-auto mr-auto" t-attf-href="/mail/view?model=#{menu.model}&amp;res_id=#{menu.id}">
+                            <span class='ks_field_value'>
+                                <t t-esc="menu.display_name" />
+                            </span>
+                            <span class='ks_field_key'>
+                                <t t-esc="field_name[0]" />
+                            </span>
+                        </a>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <t t-set="menu_model" t-value="menu.model_name" />
+                            <p class="search_company_detail ks_search_table_head">
+                                <t t-if="icons[menu.model_name]">
+                                    <img class="icon ks_search_table_icon" t-attf-src="data:image/png;base64,{{icons[menu.model_name]}}" alt="Search"/>
+                                </t>
+                                <t t-set="company_name" t-value="widget._getcompanyInfo(result)" />
+                                <t t-if="widget.show_company"> <t t-esc="company_name" /> : </t>
+                                <span><t t-esc="menu_model" /></span>
+                                    <span><t t-esc="rec_count[menu_model]" /></span>
+                            </p>
+                        <t t-set="field_name" t-value="widget._getFieldInfo(result)" />
+                        <a t-attf-class="dropdown-item col-12 ml-auto mr-auto" t-attf-href="/mail/view?model=#{menu.model}&amp;res_id=#{menu.id}">
+                            <span class='ks_field_value'>
+<!--                                <t t-esc="field_name[1]" />-->
+                                <t t-esc="menu.display_name" />
+                            </span>
+                            <span class='ks_field_key'>
+                                <t t-esc="field_name[0]" />
+                            </span>
+                        </a>
+                    </t>
+                </t>
+            </t>
+            <a class="ks_result_more" href="#"><span>More Results</span></a>
+        </xpath>
+    </t>
+
+</templates>

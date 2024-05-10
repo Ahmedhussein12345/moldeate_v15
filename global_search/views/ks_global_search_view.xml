@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Inherit view. Code add by Manmohan Singh-->
+        <record id="ks_dynamic_action_tree" model="ir.ui.view">
+            <field name="name">sh.dynamic.action.tree</field>
+            <field name="model">global.search</field>
+            <field name="inherit_id" ref="sh_global_search.sh_dynamic_action_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='model_id']" position="before">
+                    <field name="sequence"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--Inherit view. Code add by Manmohan Singh-->
+        <record id="ks_o2m_dynamic_action_form" model="ir.ui.view">
+            <field name="name">sh.dynamic.action.fields.form</field>
+            <field name="model">global.search</field>
+            <field name="inherit_id" ref="sh_global_search.sh_o2m_dynamic_action_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='model_id']" position="before">
+                    <field name="sequence"/>
+                    <field name="file_name" invisible="1"/>
+                    <field name="ks_icon" widget="binary" filename="file_name"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

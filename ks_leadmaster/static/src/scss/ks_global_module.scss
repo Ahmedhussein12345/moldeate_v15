@@ -1,0 +1,16 @@
+.wrapEdit {position: inherit;}
+
+.o_action_manager {
+    position: relative;
+}
+
+.o_studio {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 98;
+}
+
+.o_studio .o_main_navbar > .o_menu_brand, .o_studio .o_main_navbar .o_menu_sections button {
+    color: #fff !important;
+}

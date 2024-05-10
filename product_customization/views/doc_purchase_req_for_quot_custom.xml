@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_purcahse_req_for_quot_custom" inherit_id="purchase.report_purchasequotation_document">
+
+        <xpath expr="//table[@class='table table-sm']" position="after">
+        <div style='text-align: right; font-size:20px;'>
+                                    <strong class="mr16">Total Count:</strong>
+                                    <span t-esc="o.qty_count" />
+        </div>
+                        
+        </xpath>
+</template >
+
+</odoo>

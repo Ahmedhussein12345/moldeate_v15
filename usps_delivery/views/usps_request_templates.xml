@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="usps_ratev4" name="USPS-RateV4">
+        <RateV4Request t-att-USERID="USERID">
+            <Revision t-esc="Revision"/>
+            <Package t-att-ID="Package">
+                <Service t-esc="Service"/>
+                <t t-if="FirstClassMailType">
+                    <FirstClassMailType t-esc="FirstClassMailType"/>
+                </t>
+                <ZipOrigination t-esc="ZipOrigination"/>
+                <ZipDestination t-esc="ZipDestination"/>
+                <Pounds t-esc="Pounds"/>
+                <Ounces t-esc="Ounces"/>
+                <Container t-esc='Container'/>
+                <Width/>
+                <Length/>
+                <Height/>
+                <Girth/>
+                <Machinable t-esc="Machinable"/>
+            </Package>
+        </RateV4Request>
+    </template>
+
+    <template id="usps_intlratev2" name="USPS-IntlRateV2">
+        <IntlRateV2Request t-att-USERID="USERID">
+            <Revision t-esc="Revision"/>
+            <Package t-att-ID="Package">
+                <Pounds t-esc="Pounds"/>
+                <Ounces t-esc="Ounces"/>
+                <Machinable t-esc="Machinable"/>
+                <MailType t-esc="MailType"/>
+                <ValueOfContents t-esc="ValueOfContents"/>
+                <Country t-esc="Country"/>
+                <Width t-esc="Width" />
+                <Length t-esc="Length" />
+                <Height t-esc="Height" />
+                <Girth t-esc="Girth" />
+                <OriginZip t-esc="OriginZip"/>
+            </Package>
+        </IntlRateV2Request>
+    </template>
+
+    <template id="usps_shipment" name="USPS">
+        <t t-if="api_request_type == 'eVSPriorityMailIntlCertify'">
+            <eVSPriorityMailIntlCertifyRequest t-att-USERID="USERID">
+                <t t-call="usps_international_shipping" />
+            </eVSPriorityMailIntlCertifyRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSPriorityMailIntlCertify'">
+            <eVSPriorityMailIntlCertify t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSPriorityMailIntlCertify>
+        </t>
+        <t t-if="api_request_type == 'eVSPriorityMailIntl'">
+            <eVSPriorityMailIntlRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSPriorityMailIntlRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSExpressMailIntlCertify'">
+            <eVSExpressMailIntlCertifyRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSExpressMailIntlCertifyRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSExpressMailIntl'">
+            <eVSExpressMailIntlRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSExpressMailIntlRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSFirstClassMailIntl'">
+            <eVSFirstClassMailIntlRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSFirstClassMailIntlRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSFirstClassMailIntlCertify'">
+            <eVSFirstClassMailIntlCertifyRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_international_shipping" />
+            </eVSFirstClassMailIntlCertifyRequest>
+        </t>
+        <t t-if="api_request_type == 'eVSCertify'">
+            <eVSCertifyRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_domestic_shipping" />
+            </eVSCertifyRequest>
+        </t>
+        <t t-if="api_request_type == 'eVS'">
+            <eVSRequest t-att-USERID="USERID">
+                <t t-call="usps_delivery.usps_domestic_shipping" />
+            </eVSRequest>
+        </t>
+    </template>
+
+    <template id="usps_international_shipping" name="USPS-Intl">
+        <Option />
+        <Revision t-esc="Revision"/>
+        <ImageParameters>
+            <ImageParameter t-if="ImageParameter" t-esc="ImageParameter" />
+        </ImageParameters>
+        <t t-if="not FromIsCompany">
+            <FromFirstName t-esc="FromName"/>
+            <FromLastName t-esc="'-'"/>
+            <FromFirm />
+        </t>
+        <t t-if="FromName">
+            <FromFirstName />
+            <FromLastName />
+            <FromFirm t-esc="FromName" />
+        </t>
+        <FromAddress1 t-esc="FromAddress1"/>
+        <FromAddress2 t-esc="FromAddress2"/>
+        <FromCity t-esc="FromCity"/>
+        <FromState t-esc="FromState"/>
+        <FromZip5 t-esc="FromZip5"/>
+        <FromZip4 t-esc="FromZip4"/>
+        <FromPhone t-esc="FromPhone"/>
+        <t t-if="not ToIsCompany">
+            <ToFirstName t-esc="ToFirstName"/>
+            <ToLastName t-esc="ToLastName"/>
+            <ToFirm/>
+        </t>
+        <t t-if="ToIsCompany">
+            <ToFirstName/>
+            <ToLastName/>
+            <ToFirm t-esc="ToName" />
+        </t>
+        <ToAddress1 t-esc="ToAddress1"/>
+        <ToAddress2 t-esc="ToAddress2"/>
+        <ToCity t-esc="ToCity"/>
+        <ToProvince t-esc="ToState"/>
+        <ToCountry t-esc="ToCountry"/>
+        <ToPostalCode t-esc="ToZip"/>
+        <ToPOBoxFlag t-esc="ToPOBoxFlag"/>
+        <ToPhone t-esc="ToPhone"/>
+        <t t-if="api_request_type not in ['eVSFirstClassMailIntlCertify', 'eVSFirstClassMailIntl']">
+            <NonDeliveryOption t-esc='NonDeliveryOption'/>
+        </t>
+        <t t-if="api_request_type not in ['eVSFirstClassMailIntlCertify', 'eVSFirstClassMailIntl']">
+            <Container t-esc='ContainerType'/>
+        </t>
+        <ShippingContents>
+            <t t-foreach="ShippingContents" t-as="line">
+                <ItemDetail>
+                    <Description t-esc="line['Description']"/>
+                    <Quantity t-esc="line['Quantity']"/>
+                    <Value t-esc="line['Value']"/>
+                    <NetPounds t-esc="line['NetPounds']"/>
+                    <NetOunces t-esc="line['NetOunces']"/>
+                    <HSTariffNumber t-esc="line['HSTariffNumber']"/>
+                    <CountryOfOrigin t-esc="line['CountryOfOrigin']"/>
+                </ItemDetail>
+            </t>
+        </ShippingContents>
+        <GrossPounds t-esc="GrossPounds"/>
+        <GrossOunces t-esc="GrossOunces"/>
+         <t t-if="api_request_type in ['eVSFirstClassMailIntlCertify', 'eVSFirstClassMailIntl']">
+             <Machinable t-esc="Machinable" />
+        </t>
+        <ContentType t-esc="ContentType"/>
+        <Agreement t-esc="Agreement"/>
+        <ImageType t-esc="ImageType"/>
+        <ImageLayout t-esc="ImageLayout"/>
+        <Length t-esc="Length" />
+        <Width t-esc="Width" />
+        <Height t-esc="Height" />
+        <Girth t-esc="Girth" />
+        <DestinationRateIndicator>N</DestinationRateIndicator>
+    </template>
+
+    <template id="usps_domestic_shipping" name="USPS-eVS">
+        <Option/>
+        <Revision t-esc="Revision"/>
+        <ImageParameters>
+            <ImageParameter t-if="ImageParameter" t-esc="ImageParameter" />
+        </ImageParameters>
+        <t t-if="not FromIsCompany">
+            <FromName t-esc="FromName"/>
+            <FromFirm />
+        </t>
+        <t t-if="FromIsCompany">
+            <FromName t-esc="FromName"/>
+            <FromFirm t-esc="'-'"/>
+        </t>
+        <FromAddress1 t-esc="FromAddress1"/>
+        <FromAddress2 t-esc="FromAddress2"/>
+        <FromCity t-esc="FromCity"/>
+        <FromState t-esc="FromState"/>
+        <FromZip5 t-esc="FromZip5"/>
+        <FromZip4 t-esc="FromZip4"/>
+        <FromPhone t-esc="FromPhone"/>
+        <AllowNonCleansedOriginAddr>true</AllowNonCleansedOriginAddr>
+        <t t-if="not ToIsCompany">
+            <ToName t-esc="ToName"/>
+            <ToFirm/>
+        </t>
+        <t t-if="ToIsCompany">
+            <ToName t-esc="ToName"/>
+            <ToFirm t-esc="'-'"/>
+        </t>
+        <ToAddress1 t-esc="ToAddress1"/>
+        <ToAddress2 t-esc="ToAddress2"/>
+        <ToCity t-esc="ToCity"/>
+        <ToState t-esc="ToState"/>
+        <ToZip5 t-esc="ToZip5"/>
+        <ToZip4 t-esc="ToZip4"/>
+        <ToPhone t-esc="ToPhone"/>
+        <AllowNonCleansedDestAddr>true</AllowNonCleansedDestAddr>
+        <WeightInOunces t-esc="WeightInOunces"/>
+        <ServiceType t-esc="ServiceType" />
+        <Container t-if='ContainerType' t-esc='ContainerType'/>
+        <Width t-esc="Width" />
+        <Length t-esc="Length" />
+        <Height t-esc="Height" />
+        <Machinable t-esc='Machinable'/>
+        <ImageType t-esc="ImageType"/>
+    </template>
+
+    <template id="usps_cancel_shipment" name="USPS-Cancel-eVs">
+        <t t-if="api_request_type == 'eVSCancel'">
+            <t t-if="usps_delivery_type == 'domestic'">
+                <eVSCancelRequest t-att-USERID="ID">
+                    <BarcodeNumber t-esc="BarcodeNumber"/>
+                </eVSCancelRequest>
+            </t>
+            <t t-else="">
+                <eVSICancelRequest t-att-USERID="ID">
+                    <BarcodeNumber t-esc="BarcodeNumber"/>
+                </eVSICancelRequest>
+            </t>
+        </t>
+        <t t-else="">
+            <t t-if="usps_delivery_type == 'domestic'">
+                <eVSCancelCertifyRequest t-att-USERID="ID">
+                    <BarcodeNumber t-esc="BarcodeNumber"/>
+                </eVSCancelCertifyRequest>
+            </t>
+            <t t-else="">
+                <eVSICancelCertifyRequest t-att-USERID="ID">
+                    <BarcodeNumber t-esc="BarcodeNumber"/>
+                </eVSICancelCertifyRequest>
+            </t>
+        </t>
+    </template>
+
+</odoo>
