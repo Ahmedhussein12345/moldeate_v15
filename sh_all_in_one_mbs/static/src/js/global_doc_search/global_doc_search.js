@@ -24,7 +24,7 @@ odoo.define('sh_all_in_one_mbs.global_doc_search', function (require) {
             'change #js_id_sh_global_doc_search_mb_cam_select': '_onChangeCameraSelection',    
         },
 	    jsLibs: [
-	        '/sh_all_in_one_mbs/static/src/js/ZXing.js',
+//	        '/sh_all_in_one_mbs/static/src/js/ZXing.js',
 	    ],
         start: function () {
             var self = this;
