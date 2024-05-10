@@ -1,6 +1,6 @@
 from odoo import models, fields
-# #from woocommerce import API
-# from odoo.exceptions import UserError
+#from woocommerce import API
+from odoo.exceptions import UserError
 
 class ProductsWoo(models.Model):
     _name = 'woocommerce.products'

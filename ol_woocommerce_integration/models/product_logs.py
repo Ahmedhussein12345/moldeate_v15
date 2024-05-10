@@ -1,5 +1,5 @@
 from odoo import models, fields
-# from woocommerce import API
+#from woocommerce import API
 from odoo.exceptions import UserError
 
 class ProductsWooLogs(models.Model):
