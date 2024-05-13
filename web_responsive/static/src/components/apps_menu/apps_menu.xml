@@ -37,7 +37,7 @@
                 data-hotkey="a"
                 t-on-click.stop="setState(!state.open)"
             >
-                <i class="fa fa-th-large" />
+                <i class="fa fa-th" />
             </button>
             <div
                 t-if="state.open"

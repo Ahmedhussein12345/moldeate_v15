@@ -6,28 +6,35 @@
 -->
 <odoo>
     <template
-        id="webclient_bootstrap"
-        inherit_id="web.webclient_bootstrap"
-        name="App Drawer - Web Client"
+            id="webclient_bootstrap"
+            inherit_id="web.webclient_bootstrap"
+            name="App Drawer - Web Client"
     >
         <xpath expr="//t[@t-set='body_classname']" position="attributes">
             <attribute
-                name="t-value"
-                add="+ ' o_chatter_position_' + (request.env.user.chatter_position or 'normal')"
-                separator=" "
+                    name="t-value"
+                    add="+ ' o_chatter_position_' + (request.env.user.chatter_position or 'normal')"
+                    separator=" "
             />
         </xpath>
     </template>
     <template
-        id="responsive_web_layout"
-        inherit_id="web.layout"
-        name="Responsive Layout"
+            id="responsive_web_layout"
+            inherit_id="web.layout"
+            name="Responsive Layout"
     >
         <xpath expr="//meta[last()]" position="after">
             <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1, user-scalable=no"
+                    name="viewport"
+                    content="width=device-width, initial-scale=1, user-scalable=no"
             />
+            <meta name="robots"
+                  content="noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, max-image-preview:none, notranslate, noimageindex"/>
+            <meta name="googlebot"
+                  content="noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, max-image-preview:none, notranslate, noimageindex"/>
+            <meta name="googlebot-news"
+                  content="noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet, max-image-preview:none, notranslate, noimageindex"/>
         </xpath>
     </template>
+
 </odoo>

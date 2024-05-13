@@ -38,8 +38,7 @@
         background: url("../../img/home-menu-bg-overlay.svg"),
             linear-gradient(
                 to bottom,
-                $o-brand-odoo,
-                desaturate(lighten($o-brand-odoo, 20%), 15)
+                #52586d,#171616
             );
         background-size: cover;
         border-radius: 0;
@@ -80,9 +79,9 @@
                 justify-content: flex-start;
                 white-space: normal;
                 color: gray("white") !important;
-                padding: 15px 0 10px;
+                padding: 15px 0 0px;
                 font-size: 1.25rem;
-                text-shadow: 1px 1px 1px rgba(gray("black"), 0.4);
+                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
                 border-radius: 4px;
                 transition: 300ms ease;
                 transition-property: background-color;
@@ -113,9 +112,11 @@
         }
 
         .o-app-icon {
-            height: auto;
-            max-width: 6rem;
-            padding: 0;
+            max-width: 70px;
+            overflow: hidden;
+            position: relative;
+            width: 80%;
+            border-radius: 4%;
         }
 
         // Search input for menus
@@ -125,7 +126,7 @@
 
         .search-container {
             width: 100%;
-            margin: 1rem 1.5rem 0;
+            margin: 1rem 0 0;
 
             .search-input {
                 display: flex;
