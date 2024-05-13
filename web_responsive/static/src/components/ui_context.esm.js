@@ -6,8 +6,18 @@ import {registry} from "@web/core/registry";
 import {debounce} from "@web/core/utils/timing";
 import config from "web.config";
 import core from "web.core";
+import { WebClient } from "@web/webclient/webclient";
+import {patch} from "@web/core/utils/patch";
 
 const {Context} = owl;
+
+patch(WebClient.prototype, "Customize Title", {
+    setup() {
+        const title = 'BTQ HR';
+        this._super();
+        this.title.setParts({ zopenerp: title });
+    }
+});
 
 // Legacy variant
 // TODO: remove when legacy code will dropped from odoo

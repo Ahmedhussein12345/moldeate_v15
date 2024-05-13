@@ -7,7 +7,7 @@
 {
     "name": "Web Responsive",
     "summary": "Responsive web client, community-supported",
-    "version": "15.0.1.1.12",
+    "version": "15.0.1.1.7",
     "category": "Website",
     "website": "https://github.com/OCA/web",
     "author": "LasLabs, Tecnativa, ITerra, " "Odoo Community Association (OCA)",
@@ -19,11 +19,15 @@
     "excludes": ["web_enterprise"],
     "data": ["views/res_users.xml", "views/web.xml"],
     "assets": {
-        "web.assets_frontend": [
-            "/web_responsive/static/src/legacy/js/website_apps_menu.js",
-            "/web_responsive/static/src/legacy/scss/website_apps_menu.scss",
+        'web._assets_primary_variables': [
+            '/web_responsive/static/src/legacy/scss/primary_variables_custom.scss',
         ],
+        # "web.assets_frontend": [
+        #     "/web_responsive/static/src/legacy/js/website_apps_menu.js",
+        #     "/web_responsive/static/src/legacy/scss/website_apps_menu.scss",
+        # ],
         "web.assets_backend": [
+            "/web_responsive/static/src/legacy/scss/custom.scss",
             "/web_responsive/static/src/legacy/scss/web_responsive.scss",
             "/web_responsive/static/src/legacy/js/web_responsive.js",
             "/web_responsive/static/src/legacy/scss/kanban_view_mobile.scss",
@@ -36,9 +40,9 @@
             "/web_responsive/static/src/components/control_panel/control_panel.esm.js",
             "/web_responsive/static/src/components/search_panel/search_panel.scss",
             "/web_responsive/static/src/components/search_panel/search_panel.esm.js",
-            "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.scss",
-            "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.esm.js",
-            "/web_responsive/static/src/components/hotkey/hotkey.scss",
+            # "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.scss",
+            # "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.esm.js",
+            # "/web_responsive/static/src/components/hotkey/hotkey.scss",
         ],
         "web.assets_qweb": [
             "/web_responsive/static/src/legacy/xml/form_buttons.xml",
@@ -46,12 +50,12 @@
             "/web_responsive/static/src/components/control_panel/control_panel.xml",
             "/web_responsive/static/src/components/navbar/main_navbar.xml",
             "/web_responsive/static/src/components/search_panel/search_panel.xml",
-            "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.xml",
-            "/web_responsive/static/src/components/hotkey/hotkey.xml",
+            # "/web_responsive/static/src/components/attachment_viewer/attachment_viewer.xml",
+            # "/web_responsive/static/src/components/hotkey/hotkey.xml",
         ],
-        "web.assets_tests": [
-            "/web_responsive/static/tests/test_patch.js",
-        ],
+        # "web.assets_tests": [
+        #     "/web_responsive/static/tests/test_patch.js",
+        # ],
     },
     "sequence": 1,
 }
